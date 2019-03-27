@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Marvel Quiz</string>
     <string name="question_1">
-        Who is the best marvel character?
+        Which character lives in Wakanda?
     </string>
     <string name="question_2">
         Who is in love with Pepper Pots?
@@ -9,11 +9,15 @@
     <string name="question_3">
         Who will defeat Thanos?
     </string>
+    <string name="question_4">
+        Who fought with Wolverine in WWII?
+    </string>
     <string name="a_button">A. Captain America</string>
     <string name="b_button">B. Ironman</string>
     <string name="c_button">C. Captain Marvel</string>
     <string name="d_button">D. Black Panther</string>
-    <string name="next_button">Next</string>
+    <string name="next_button">Skip</string>
+    <string name="previous_button">Previous</string>
     <string name="incorrect_toast">Wrong!</string>
     <string name="correct_toast">Yay! You got it!</string>
 
