@@ -10,8 +10,8 @@
         android:id="@+id/score_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="24dp"
-        android:layout_marginBottom="50dp"
+        android:padding="14dp"
+        android:layout_marginBottom="5dp"
         android:textColor="@color/colorPrimary"
         android:textSize="28sp"
         android:layout_gravity="top|center_horizontal"/>
@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:padding="20dp"
         android:textSize="24sp"
+        android:textAlignment="center"
         android:text="@string/question_1" />
 
     <LinearLayout
@@ -79,6 +80,12 @@
             android:drawableLeft="@drawable/arrow_left"
             android:drawablePadding="4dp"
             android:text="Previous" />
+
+        <Button
+            android:id="@+id/cheat_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cheat_button"/>
 
         <Button
             android:id="@+id/next_button"

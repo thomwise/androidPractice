@@ -7,7 +7,7 @@
         Who is in love with Pepper Pots?
     </string>
     <string name="question_3">
-        Who will defeat Thanos?
+        Who has the strongest powers?
     </string>
     <string name="question_4">
         Who fought with Wolverine in WWII?
@@ -18,7 +18,16 @@
     <string name="d_button">D. Black Panther</string>
     <string name="next_button">Skip</string>
     <string name="previous_button">Previous</string>
+
+    <string name="cheat_button">Cheat</string>
+    <string name="warning_text">Are you really sure you want to do this buddy?</string>
+    <string name="show_answer_button">Show Answer</string>
+    <string name="judgement_toast">You filthy cheater! How dare you!</string>
+
     <string name="incorrect_toast">Wrong!</string>
     <string name="correct_toast">Yay! You got it!</string>
+    <string name="intro_button">Begin Marvel Quiz</string>
+    <string name="Avengers">Avengers Image</string>
+
 
 </resources>

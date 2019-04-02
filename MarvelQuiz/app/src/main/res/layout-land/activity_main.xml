@@ -11,7 +11,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="2dp"
-        android:layout_marginTop="15dp"
         android:textColor="@color/colorPrimary"
         android:textSize="28sp"
         android:layout_gravity="top|center_horizontal"/>
@@ -20,9 +19,10 @@
         android:id="@+id/question_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="20dp"
+        android:padding="10dp"
         android:textSize="24sp"
-        android:text="@string/question_1" />
+        android:textAlignment="center"
+        android:text="@string/question_1"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -33,37 +33,44 @@
             android:id="@+id/a_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#000080"
+            android:background="#000080"
             android:text="@string/a_button"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:layout_marginRight="10dp"
+            android:paddingHorizontal="15dp"/>
 
         <Button
             android:id="@+id/b_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#9a2911"
-            android:text="@string/b_button" />
+            android:background="#9a2911"
+            android:text="@string/b_button"
+            android:paddingHorizontal="15dp"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="3dp">
 
         <Button
             android:id="@+id/c_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#fcde1f"
-            android:text="@string/c_button" />
+            android:background="#fcde1f"
+            android:text="@string/c_button"
+            android:layout_marginRight="10dp"
+            android:paddingHorizontal="15dp"/>
 
         <Button
             android:id="@+id/d_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#000000"
+            android:background="#000000"
             android:text="@string/d_button"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:paddingHorizontal="15dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -76,9 +83,15 @@
             android:id="@+id/previous_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/arrow_left"
+            android:drawableStart="@drawable/arrow_left"
             android:drawablePadding="4dp"
             android:text="Previous" />
+
+        <Button
+            android:id="@+id/cheat_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cheat_button"/>
 
         <Button
             android:id="@+id/next_button"

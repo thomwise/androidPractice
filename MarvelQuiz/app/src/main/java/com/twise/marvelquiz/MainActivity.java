@@ -1,6 +1,9 @@
 package com.twise.marvelquiz;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,10 +23,12 @@ public class MainActivity extends AppCompatActivity {
     private Button mDButton;
     private Button mNextButton;
     private Button mPreviousButton;
+    private Button mCheatButton;
 
     private static final String TAG = "QuizActivity";
     private static final String KEY_INDEX = "index";
     private static final String KEY_SCORE = "score";
+    private static final int REQUEST_CODE_CHEAT = 42;
 
     private Question[] mQuestionBank = new Question[] {
             new Question(R.string.question_1,"D"),
@@ -34,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int mCurrentIndex = 0;
     private int mScore = 0;
+    private boolean mCheater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,13 +57,7 @@ public class MainActivity extends AppCompatActivity {
         mScoreTextView = (TextView) findViewById(R.id.score_text_view);
 
         mQuestionTextView = (TextView) findViewById(R.id.question_text_view);
-        mQuestionTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mCurrentIndex = ++mCurrentIndex % mQuestionBank.length;
-                updateQuestion();
-            }
-        });
+
         updateQuestion();
 
         mAButton = (Button)findViewById(R.id.a_button);
@@ -104,8 +104,21 @@ public class MainActivity extends AppCompatActivity {
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mCheater = false;
                 mCurrentIndex = ++mCurrentIndex % mQuestionBank.length;
                 updateQuestion();
+            }
+        });
+
+        mCheatButton = (Button) findViewById(R.id.cheat_button);
+        mCheatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start new activity
+                String answerIs = mQuestionBank[mCurrentIndex].getAnswer();
+                Intent i = CheatActivity.newIntent(MainActivity.this, answerIs);
+
+                startActivity(i);
             }
         });
 
@@ -113,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
         mPreviousButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mCheater = false;
                 mCurrentIndex = --mCurrentIndex % mQuestionBank.length;
                 updateQuestion();
             }
@@ -157,6 +171,19 @@ public class MainActivity extends AppCompatActivity {
         outState.putInt(KEY_SCORE, mScore);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(resultCode != Activity.RESULT_OK) {
+            return;
+        }
+        if(requestCode == REQUEST_CODE_CHEAT) {
+            if(data == null) {
+                return;
+            }
+            mCheater = CheatActivity.wasAnswerShown(data);
+        }
+    }
+
     private void updateQuestion() {
         int question = mQuestionBank[mCurrentIndex].getTextResId();
         mQuestionTextView.setText(question);
@@ -165,14 +192,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void areTheyRight(String userGuess) {
         String answer = mQuestionBank[mCurrentIndex].getAnswer();
-        if(userGuess.equals(answer)) {
+
+        if(mCheater) {
+            Toast t = Toast.makeText(this, R.string.judgement_toast, Toast.LENGTH_SHORT);
+            t.setGravity(Gravity.TOP,0,30);
+            t.show();
+        } else if(userGuess.equals(answer)) {
             Toast t = Toast.makeText(this, R.string.correct_toast, Toast.LENGTH_SHORT);
             t.setGravity(Gravity.TOP,0,30);
             t.show();
             mScore++;
         } else {
             Toast t = Toast.makeText(this, R.string.incorrect_toast,Toast.LENGTH_SHORT);
-            t.setGravity(Gravity.TOP,0,20);
+            t.setGravity(Gravity.TOP,0,30);
             t.show();
             mScore--;
         }
