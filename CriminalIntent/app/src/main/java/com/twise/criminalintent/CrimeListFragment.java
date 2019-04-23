@@ -1,4 +1,5 @@
-package com.twise.officepatroller;
+package com.twise.criminalintent;
+
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,7 +24,7 @@ public class CrimeListFragment extends Fragment {
 
 
     private class CrimeHolder extends RecyclerView.ViewHolder
-                                implements View.OnClickListener {
+            implements View.OnClickListener {
 
         private TextView titleTextView;
         private TextView dateTextView;
@@ -97,9 +98,8 @@ public class CrimeListFragment extends Fragment {
             mCrimes = crimes;
         }
 
-        @NonNull
         @Override
-        public CrimeHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        public CrimeHolder onCreateViewHolder( ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
             View view = layoutInflater
                     .inflate(R.layout.list_item_crime, parent, false);
@@ -107,7 +107,7 @@ public class CrimeListFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull CrimeHolder holder, int position) {
+        public void onBindViewHolder( CrimeHolder holder, int position) {
             Crime crime = mCrimes.get(position);
             holder.bindCrime(crime);
         }

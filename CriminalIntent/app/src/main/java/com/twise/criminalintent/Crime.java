@@ -1,4 +1,4 @@
-package com.twise.officepatroller;
+package com.twise.criminalintent;
 
 import java.util.Date;
 import java.util.UUID;

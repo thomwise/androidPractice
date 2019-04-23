@@ -1,4 +1,4 @@
-package com.twise.officepatroller;
+package com.twise.criminalintent;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -20,7 +20,7 @@ import android.widget.Spinner;
 import java.util.UUID;
 
 public class CrimeFragment extends Fragment
-                            implements AdapterView.OnItemSelectedListener {
+        implements AdapterView.OnItemSelectedListener {
 
     private static final String ARG_CRIME_ID = "crime_id";
 
@@ -39,7 +39,7 @@ public class CrimeFragment extends Fragment
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         UUID id = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
         mCrime = CrimeLab.get(getActivity()).getCrime(id);
@@ -47,12 +47,13 @@ public class CrimeFragment extends Fragment
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_crime, container, false);
+        View view = inflater.inflate(R.layout.fragment_crime, container, false);
 
         // --- TITLE TEXT FIELD
-        titleField = (EditText)view.findViewById(R.id.crime_title);
+        titleField = (EditText) view.findViewById(R.id.crime_title);
         titleField.setText(mCrime.getTitle());
         titleField.addTextChangedListener(new TextWatcher() {
             @Override
@@ -80,8 +81,8 @@ public class CrimeFragment extends Fragment
         severitySpinner = (Spinner) view.findViewById(R.id.severity_spinner);
         ArrayAdapter<CharSequence> adapter =
                 ArrayAdapter.createFromResource(getActivity(),
-                                                R.array.severity_label,
-                                                android.R.layout.simple_spinner_item);
+                        R.array.severity_label,
+                        android.R.layout.simple_spinner_item);
         severitySpinner.setAdapter(adapter);
         severitySpinner.setOnItemSelectedListener(this);
         int pos = 0;

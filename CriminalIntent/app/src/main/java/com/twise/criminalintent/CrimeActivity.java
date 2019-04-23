@@ -1,4 +1,4 @@
-package com.twise.officepatroller;
+package com.twise.criminalintent;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public class CrimeActivity extends SingleFragmentActivity {
 
-    private static final String EXTRA_CRIME_ID = "com.twise.android.officepatroller.crime_id";
+    private static final String EXTRA_CRIME_ID = "com.twise.android.criminalIntent.crime_id";
 
     public static Intent newIntent(Context context, UUID crimeID) {
         Intent i = new Intent(context, CrimeActivity.class);

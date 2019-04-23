@@ -58,6 +58,6 @@ public class CheatActivity extends AppCompatActivity {
     }
 
     public static boolean wasAnswerShown(Intent result) {
-        return result.getBooleanExtra(KEY_CHEATER, true);
+        return result.getBooleanExtra(KEY_CHEATER, false);
     }
 }

@@ -2,7 +2,6 @@ package com.twise.marvelquiz;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,7 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class QuizActivity extends AppCompatActivity {
 
     private TextView mQuestionTextView;
     private TextView mScoreTextView;
@@ -28,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "QuizActivity";
     private static final String KEY_INDEX = "index";
     private static final String KEY_SCORE = "score";
+    private static final String KEY_CHEAT = "cheat";
     private static final int REQUEST_CODE_CHEAT = 42;
 
     private Question[] mQuestionBank = new Question[] {
@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         if(savedInstanceState != null) {
             mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
             mScore = savedInstanceState.getInt(KEY_SCORE,0);
+            mCheater = savedInstanceState.getBoolean(KEY_CHEAT,false);
         }
 
         mScoreTextView = (TextView) findViewById(R.id.score_text_view);
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 areTheyRight("A");
+                mCheater = false;
                 mCurrentIndex = ++mCurrentIndex % mQuestionBank.length;
                 updateQuestion();
             }
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 areTheyRight("B");
+                mCheater = false;
                 mCurrentIndex = ++mCurrentIndex % mQuestionBank.length;
                 updateQuestion();
             }
@@ -85,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 areTheyRight("C");
+                mCheater = false;
                 mCurrentIndex = ++mCurrentIndex % mQuestionBank.length;
                 updateQuestion();
             }
@@ -95,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 areTheyRight("D");
+                mCheater = false;
                 mCurrentIndex = ++mCurrentIndex % mQuestionBank.length;
                 updateQuestion();
             }
@@ -104,8 +109,8 @@ public class MainActivity extends AppCompatActivity {
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mCheater = false;
                 mCurrentIndex = ++mCurrentIndex % mQuestionBank.length;
+                mCheater = false;
                 updateQuestion();
             }
         });
@@ -116,9 +121,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Start new activity
                 String answerIs = mQuestionBank[mCurrentIndex].getAnswer();
-                Intent i = CheatActivity.newIntent(MainActivity.this, answerIs);
+                Intent i = CheatActivity.newIntent(QuizActivity.this, answerIs);
 
-                startActivity(i);
+                startActivityForResult(i, REQUEST_CODE_CHEAT);
             }
         });
 
@@ -169,10 +174,11 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "Saving current index of " + mCurrentIndex);
         outState.putInt(KEY_INDEX, mCurrentIndex);
         outState.putInt(KEY_SCORE, mScore);
+        outState.putBoolean(KEY_CHEAT, mCheater);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode != Activity.RESULT_OK) {
             return;
         }

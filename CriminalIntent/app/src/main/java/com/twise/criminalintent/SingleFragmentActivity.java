@@ -1,4 +1,4 @@
-package com.twise.officepatroller;
+package com.twise.criminalintent;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

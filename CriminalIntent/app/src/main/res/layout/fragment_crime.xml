@@ -31,6 +31,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <Spinner
+        android:id="@+id/severity_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </Spinner>
+
     <CheckBox
         android:id="@+id/crime_solved"
         android:layout_width="match_parent"
