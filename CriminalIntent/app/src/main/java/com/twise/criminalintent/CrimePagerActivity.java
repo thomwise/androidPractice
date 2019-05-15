@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -22,7 +23,7 @@ public class CrimePagerActivity extends AppCompatActivity {
     private static final String EXTRA_CRIME_ID = "com.twise.android.criminalintent.crime_id";
 
     private ViewPager mViewPager;
-    private ArrayList<Crime> mCrimes;
+    private List<Crime> mCrimes;
     private Button mFirstButton;
     private Button mLastButton;
 

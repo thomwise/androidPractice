@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
-    android:orientation="vertical">
+    android:layout_margin="6dp">
 
-    <TextView
-        style="?android:listSeparatorTextViewStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/crime_title_label" />
+    <include layout="@layout/view_camera_and_title" />
 
-    <EditText
-        android:id="@+id/crime_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/crime_title_hint"
-        android:inputType="textPersonName" />
+    <!--<TextView-->
+        <!--style="?android:listSeparatorTextViewStyle"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/crime_title_label" />-->
+
+    <!--<EditText-->
+        <!--android:id="@+id/crime_title"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:ems="10"-->
+        <!--android:hint="@string/crime_title_hint"-->
+        <!--android:inputType="textPersonName" />-->
 
     <TextView
         style="?android:listSeparatorTextViewStyle"
@@ -55,7 +57,8 @@
         android:id="@+id/crime_report"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:text="@string/crime_report_button_text" />
 
 </LinearLayout>

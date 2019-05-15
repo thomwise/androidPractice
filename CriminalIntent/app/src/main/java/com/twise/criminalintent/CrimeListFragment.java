@@ -168,7 +168,7 @@ public class CrimeListFragment extends Fragment {
 
     private void updateUI() {
         CrimeLab crimeLab = CrimeLab.get(getActivity());
-        ArrayList<Crime> crimes = crimeLab.getCrimes();
+        List<Crime> crimes = crimeLab.getCrimes();
 
         if(mCrimeListAdapter == null) {
             mCrimeListAdapter = new CrimeListAdapter(crimes);
@@ -183,13 +183,13 @@ public class CrimeListFragment extends Fragment {
 
     private class CrimeListAdapter extends RecyclerView.Adapter<CrimeHolder> {
 
-        private ArrayList<Crime> mCrimes;
+        private List<Crime> mCrimes;
 
-        public CrimeListAdapter(ArrayList<Crime> crimes) {
+        public CrimeListAdapter(List<Crime> crimes) {
             mCrimes = crimes;
         }
 
-        public void setCrimes(ArrayList<Crime> crimes) {
+        public void setCrimes(List<Crime> crimes) {
             mCrimes = crimes;
         }
 

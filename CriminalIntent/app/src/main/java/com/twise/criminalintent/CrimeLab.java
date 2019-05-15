@@ -8,7 +8,9 @@ import android.database.sqlite.SQLiteDatabase;
 import com.twise.criminalintent.database.CrimeCursorWrapper;
 import com.twise.criminalintent.database.CrimeDbSchema.CrimeTable;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class CrimeLab {
@@ -61,6 +63,11 @@ public class CrimeLab {
                             new String[] { uuidString });
     }
 
+    public File getPhotoFile(Crime crime) {
+        File filesDir = mContext.getFilesDir();
+        return new File(filesDir, crime.getPhotoFilename());
+    }
+
     private CrimeCursorWrapper queryCrimes(String whereClause, String[] whereArgs) {
         Cursor cursor = mDatabase.query(
                 CrimeTable.NAME,
@@ -74,9 +81,9 @@ public class CrimeLab {
         return new CrimeCursorWrapper(cursor);
     }
 
-    public ArrayList<Crime> getCrimes() {
+    public List<Crime> getCrimes() {
 
-        ArrayList<Crime> crimes = new ArrayList<>();
+        List<Crime> crimes = new ArrayList<>();
 
         CrimeCursorWrapper cursor = queryCrimes(null, null);
 
