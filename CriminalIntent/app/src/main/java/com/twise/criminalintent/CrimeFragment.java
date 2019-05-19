@@ -192,6 +192,10 @@ public class CrimeFragment extends Fragment
             mSuspectButton.setEnabled(false);
         }
 
+        // Photo Widgets
+        mPhotoView = (ImageView) view.findViewById(R.id.crime_photo);
+        updatePhotoView();
+
         mPhotoButton = (ImageButton) view.findViewById(R.id.crime_camera);
 
         final Intent captureImage = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -203,12 +207,22 @@ public class CrimeFragment extends Fragment
         mPhotoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Uri uri = FileProvider.getUriForFile(getActivity(),
+                        "com.twise.android.criminalintent.fileprovider",
+                        mPhotoFile);
+                captureImage.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+
+                List<ResolveInfo> cameraActivities = getActivity()
+                        .getPackageManager().queryIntentActivities(captureImage,
+                        PackageManager.MATCH_DEFAULT_ONLY);
+
+                for(ResolveInfo activity : cameraActivities) {
+                    getActivity().grantUriPermission(activity.activityInfo.packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+                }
+
                 startActivityForResult(captureImage, REQUEST_PHOTO);
             }
         });
-
-        mPhotoView = (ImageView) view.findViewById(R.id.crime_photo);
-        updatePhotoView();
 
         return view;
     }
@@ -245,6 +259,7 @@ public class CrimeFragment extends Fragment
         if(resultCode != Activity.RESULT_OK) {
             return;
         }
+
         if(requestCode == REQUEST_DATE) {
             Date date =
                     (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
